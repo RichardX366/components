@@ -1,0 +1,203 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import * as stories from './index.stories.tsx';
+import { HueRangeExample } from './examples.tsx';
+
+# Formatting
+
+@richardx/components comes prepackaged with some formatting functions that can be used in many situations
+
+## Format Phone Number
+
+```ts
+const formatPhoneNumber = (phoneNumberString?: string | null): string => {};
+```
+
+- If `phoneNumberString` is `null` or `undefined`, it returns `''`
+- If `phoneNumberString` is not a 10 digit number, it returns the input
+
+## Format Number
+
+```ts
+const formatNumber = (num?: number | null): string => {};
+```
+
+- If `num` is `null` or `undefined`, it returns `0`
+- Otherwise, it will separate each 3 digits with a comma, remove trailing zeros in the decimal, and round to the nearest thousandths
+
+## Format Currency
+
+```ts
+const formatCurrency = (num?: number | null): string => {};
+```
+
+- If `num` is `null` or `undefined`, it returns `$0.00`
+- Otherwise, it will separate each 3 digits with a comma, add a dollar sign, and use 2 decimal places.
+
+## Capitalize
+
+```ts
+const capitalize = (str: string): string => {};
+```
+
+- Returns the string with the first letter capitalized and the rest lowercased
+
+## Revert Camel Case
+
+```ts
+const unCamelCase = (str: string): string => {};
+```
+
+- Turns cammel case into normal text
+- Documentation of camel case [here](https://en.wikipedia.org/wiki/Camel_case)
+
+## Get Tint String
+
+```ts
+const getTintString = (tintColor?: number | [number, number, number], tintStrength = 0.5): string => {};
+// Example input: [0, 255, 255], .1
+// Example Output: `
+  linear-gradient(
+    rgba(0, 255, 255, .1),
+    rgba(0, 255, 255, .1)
+  ),`
+```
+
+- Gets a tint string to tint a specified image in a background-image property
+
+## Hex to RGB
+
+```ts
+const hexToRGB = (hex: string): [number, number, number] => {};
+```
+
+- Converts hex to an RGB string
+
+## Remove List Duplicates
+
+```ts
+const removeListDuplicates = (list: any[], key: string): any[] => {};
+```
+
+- Removes duplicates in a list. More info is provided in JSDoc.
+
+## Lean
+
+```ts
+const lean = (obj: any): any => {};
+```
+
+- Turns dates into strings, fixes proxy/reference errors, etc (stringifies then parses)
+
+## Falsey to Empty
+
+```ts
+const falseyToEmpty = (obj: any): any => {};
+```
+
+- Converts falsey values in the object into empty strings (good for forms)
+
+## Format File Size
+
+```ts
+const formatFileSize = (bytes: number): string => {};
+```
+
+- Converts number of bytes into human readable file size
+
+## Revert Screaming Snake Case
+
+```ts
+const unScreamingSnakeCase = (str: string): string => {};
+```
+
+- Turns screaming snake case (enum format) into normal text
+- Documentation of screaming snake case [here](https://en.wikipedia.org/wiki/Snake_case)
+
+## Format to Date Input
+
+```ts
+const dateInput = (date: Date | string): string => {};
+```
+
+- Turns a date or date string into a string that can be used in a date input
+
+## Format to Word Date
+
+```ts
+const wordDate = (date: Date | string): string => {};
+```
+
+- Formats a date or date string into words (ex: `January 1, 2020`)
+
+## Format to Number Date
+
+```ts
+const numberDate = (date: Date | string): string => {};
+```
+
+- Formats a date or date string into numbers (ex: `01/01/2020`)
+
+## Transform UTC Time to Local
+
+```ts
+const utcTimeToLocal = (utc: string, date: string | Date) => {};
+```
+
+- Transforms a UTC time to local time
+- Date is required to determine daylight savings time shift
+
+## Transform Local Time to UTC
+
+```ts
+const localTimeToUTC = (local: string, date: string | Date) => {};
+```
+
+- Transforms a local time to UTC time
+- Date is required to determine daylight savings time shift
+
+## Color from Hue Range
+
+```ts
+const colorFromHueRange = (
+  {
+    from,
+    to,
+    saturation = 100,
+    lightness = 40,
+  }: {
+    from: number;
+    to: number;
+    saturation?: number;
+    lightness?: number;
+  },
+  value: number,
+): string => {};
+```
+
+- Returns a color of a hue determined by `value`
+- Will scale hue from `from` to `to`
+
+<HueRangeExample />
+
+```tsx
+const [hueRangeTest, setHueRangeTest] = useState(0);
+return (
+  <div>
+    <h1
+      style={{
+        color: colorFromHueRange({ from: 0, to: 120 }, hueRangeTest),
+      }}
+    >
+      Hue Range Example (red to green)
+    </h1>
+    <input
+      type='range'
+      value={hueRangeTest}
+      onChange={(e) => setHueRangeTest(+e.target.value)}
+      min={0}
+      max={1}
+      step={1e-9}
+    />
+  </div>
+);
+```

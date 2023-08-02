@@ -1,3 +1,3 @@
-export * from './Button';
-export * from './Page';
-export * from './Header';
+export * from './Modal';
+export * from './Table';
+export * from './Formatting';
