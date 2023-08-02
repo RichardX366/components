@@ -1,7 +1,7 @@
 {
   "name": "@richardx/components",
   "license": "MIT",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": false,
   "main": "dist/index.js",
   "author": {
@@ -21,7 +21,7 @@
   "scripts": {
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "prepare": "tsc && tailwindcss -o ./dist/styles.css --minify"
+    "prepare": "rm -rf dist && tsc && tailwindcss -o ./dist/styles.css --minify"
   },
   "eslintConfig": {
     "extends": [
