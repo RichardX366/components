@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 
 import { Column, Table, TableProps } from '.';
@@ -29,4 +30,15 @@ const sampleData = [
 
 export const Default: StoryFn<TableProps> = (args) => {
   return <Table {...args} data={sampleData} columns={sampleColumns} />;
+};
+
+export const ActiveRows: StoryFn<TableProps> = (args) => {
+  return (
+    <Table
+      activeRows={[1]}
+      {...args}
+      data={sampleData}
+      columns={sampleColumns}
+    />
+  );
 };
