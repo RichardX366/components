@@ -12,8 +12,11 @@
     "dist"
   ],
   "dependencies": {
+    "@hookstate/core": "3",
     "@mantine/hooks": "^6.0.17",
     "daisyui": "^3.5.0",
+    "nanoid": "^4.0.2",
+    "react-icons": "^4.10.1",
     "react-scripts": "5.0.1"
   },
   "peerDependencies": {
