@@ -141,7 +141,7 @@ export const Input: React.FC<InputProps> = ({
             )
           }
           id={id}
-          className={`input shadow-md transition-shadow py-3 dark:placeholder:text-gray-500 focus:outline-none rounded-md border-t-0 border peer disabled:text-gray-400 disabled:dark:text-gray-500 dark:text-gray-200 w-full ${
+          className={`input shadow-md transition-shadow py-3 dark:placeholder:text-gray-500 focus:outline-none rounded-md border-t-0 border peer disabled:text-gray-400 disabled:dark:text-gray-500 dark:text-gray-200 w-full min-w-[calc(100%-1rem)] ${
             error
               ? 'border-red-300 dark:border-red-800 focus:border-red-500 shadow-red-500/50 hover:shadow-red-500'
               : 'border-gray-300 dark:border-gray-500 focus:border-gray-500 focus:dark:border-white shadow-black/10 dark:shadow-white/20 hover:shadow-black/40 hover:dark:shadow-white/70 disabled:hover:shadow-black/10 disabled:hover:dark:shadow-white/20'
