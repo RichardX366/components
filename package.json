@@ -1,7 +1,7 @@
 {
   "name": "@richardx/components",
   "license": "MIT",
-  "version": "0.2.3",
+  "version": "0.3.1",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,7 +14,10 @@
   "dependencies": {
     "@hookstate/core": "3",
     "@mantine/hooks": "^6.0.17",
+    "compressorjs": "^1.2.1",
     "daisyui": "^3.5.0",
+    "gifsicle-wasm-browser": "^1.5.16",
+    "heic2any": "^0.0.4",
     "nanoid": "^4.0.2",
     "react-icons": "^4.10.1",
     "react-scripts": "5.0.1"
