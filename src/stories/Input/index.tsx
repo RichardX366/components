@@ -14,7 +14,7 @@ const cursorPointerInputs = [
 
 export interface InputProps {
   value: string;
-  onChange(value: string): any;
+  onChange(value: string, event: React.ChangeEvent<HTMLInputElement>): any;
   label?: string;
   placeholder?: string;
   description?: string;
@@ -89,6 +89,7 @@ export interface InputProps {
   iconLeftClickable?: boolean;
   iconRightClickable?: boolean;
   multiple?: boolean;
+  accept?: string[];
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -111,7 +112,8 @@ export const Input: React.FC<InputProps> = ({
   iconLeftClickable,
   iconRightClickable,
   multiple,
-}: InputProps) => {
+  accept,
+}) => {
   const id = useId();
   const [focused, setFocused] = useState(false);
 
@@ -135,6 +137,7 @@ export const Input: React.FC<InputProps> = ({
               type === ('file' as any)
                 ? (e.target.files as any)
                 : e.target.value,
+              e,
             )
           }
           id={id}
@@ -157,6 +160,7 @@ export const Input: React.FC<InputProps> = ({
           maxLength={maxLength}
           required={required}
           multiple={multiple}
+          accept={accept?.join(',')}
         />
         <div
           className={`absolute inset-y-0 pointer-events-none left-0 rounded-l-md border-t  ${

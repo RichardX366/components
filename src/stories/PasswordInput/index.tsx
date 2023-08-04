@@ -7,9 +7,7 @@ export type PasswordInputProps = Omit<
   'type' | 'min' | 'max' | 'step' | 'iconRight'
 >;
 
-export const PasswordInput: React.FC<PasswordInputProps> = (
-  props: PasswordInputProps,
-) => {
+export const PasswordInput: React.FC<PasswordInputProps> = (props) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (

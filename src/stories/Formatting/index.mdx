@@ -140,7 +140,7 @@ const numberDate = (date: Date | string): string => {};
 ## Transform UTC Time to Local
 
 ```ts
-const utcTimeToLocal = (utc: string, date: string | Date) => {};
+const utcTimeToLocal = (utc: string, date: string | Date): string => {};
 ```
 
 - Transforms a UTC time to local time
@@ -149,11 +149,21 @@ const utcTimeToLocal = (utc: string, date: string | Date) => {};
 ## Transform Local Time to UTC
 
 ```ts
-const localTimeToUTC = (local: string, date: string | Date) => {};
+const localTimeToUTC = (local: string, date: string | Date): string => {};
 ```
 
 - Transforms a local time to UTC time
 - Date is required to determine daylight savings time shift
+-
+
+## Verify Mime Type is Acceptable
+
+```ts
+const mimeAcceptable = (mimeTypes: string[], mimeType: string): boolean => {};
+```
+
+- Verifies if the given mime type is acceptable in the list of mime types provided
+- Returns true if it is acceptable and false if not
 
 ## Color from Hue Range
 

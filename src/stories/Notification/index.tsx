@@ -38,7 +38,7 @@ export interface NotificationProps {
 
 export const Notifications: React.FC<NotificationProps> = ({
   className = '',
-}: NotificationProps) => {
+}) => {
   const notifications = useHookstate(globalNotifications);
   notifications.forEach((notification) => {
     const { duration, startedTimeout, id } = notification.value;
@@ -74,7 +74,8 @@ export const Notifications: React.FC<NotificationProps> = ({
   );
 };
 
-export const error = (message: any, duration = 5000) =>
+export const error = (message: any, duration = 5000) => {
+  console.trace(message);
   globalNotifications.merge([
     {
       type: 'error',
@@ -87,6 +88,7 @@ export const error = (message: any, duration = 5000) =>
       duration,
     },
   ]);
+};
 
 export const success = (message: string, duration = 5000) =>
   globalNotifications.merge([

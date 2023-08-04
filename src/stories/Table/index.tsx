@@ -10,11 +10,7 @@ export interface TableProps {
   activeRows?: number[];
 }
 
-export const Table: React.FC<TableProps> = ({
-  columns,
-  data,
-  activeRows,
-}: TableProps) => {
+export const Table: React.FC<TableProps> = ({ columns, data, activeRows }) => {
   return (
     <div className='overflow-x-auto rounded-md shadow-md dark:shadow-white/20 ring-1 dark:ring-white/10 ring-black/10'>
       <table className='table table-lg'>

@@ -17,7 +17,7 @@ export const Modal: React.FC<ModalProps> = ({
   actions,
   open,
   setOpen,
-}: ModalProps) => {
+}) => {
   useHotkeys([['escape', () => setOpen(false)]]);
   const [debouncedOpen] = useDebouncedValue(open, 300);
   const [instantOpen] = useDebouncedValue(open, 0);

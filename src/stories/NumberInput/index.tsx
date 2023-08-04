@@ -15,9 +15,7 @@ export interface NumberInputProps
   onChange(value: number | null): any;
 }
 
-export const NumberInput: React.FC<NumberInputProps> = (
-  props: NumberInputProps,
-) => {
+export const NumberInput: React.FC<NumberInputProps> = (props) => {
   let {
     value,
     onChange,
@@ -27,6 +25,7 @@ export const NumberInput: React.FC<NumberInputProps> = (
     max,
     iconLeft,
   } = props;
+
   const [stringValue, setStringValue] = useState(value?.toString() || '');
 
   if (value === null) {

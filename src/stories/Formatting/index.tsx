@@ -164,3 +164,17 @@ export const localTimeToUTC = (local: string, date: string | Date): string =>
   new Date(
     `${new Date(date).toLocaleDateString()} ${local}`,
   ).toLocaleTimeString('en-GB', { timeStyle: 'short', timeZone: 'UTC' });
+
+export const mimeAcceptable = (mimeTypes: string[], mimeType: string) => {
+  const regexp = new RegExp(
+    `^${mimeTypes
+      .map((allowedType) =>
+        allowedType
+          .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+          .replace(/\\\*/g, '.+'),
+      )
+      .join('|')}$`,
+    'i',
+  );
+  return regexp.test(mimeType);
+};
