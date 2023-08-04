@@ -141,10 +141,10 @@ export const Input: React.FC<InputProps> = ({
             )
           }
           id={id}
-          className={`input shadow-md transition-shadow py-3 dark:placeholder:text-gray-500 focus:outline-none rounded-md bg-transparent border-t-0 border peer disabled:text-gray-400 disabled:dark:text-gray-500 dark:text-gray-200 w-full disabled:bg-transparent ${
+          className={`input shadow-md transition-shadow py-3 dark:placeholder:text-gray-500 focus:outline-none rounded-md border-t-0 border peer disabled:text-gray-400 disabled:dark:text-gray-500 dark:text-gray-200 w-full ${
             error
               ? 'border-red-300 dark:border-red-800 focus:border-red-500 shadow-red-500/50 hover:shadow-red-500'
-              : 'border-gray-200 dark:border-gray-500 disabled:border-gray-200 disabled:dark:border-gray-500 focus:border-gray-500 focus:dark:border-white shadow-black/10 dark:shadow-white/20 hover:shadow-black/40 hover:dark:shadow-white/70 disabled:hover:shadow-black/10 disabled:hover:dark:shadow-white/20'
+              : 'border-gray-300 dark:border-gray-500 focus:border-gray-500 focus:dark:border-white shadow-black/10 dark:shadow-white/20 hover:shadow-black/40 hover:dark:shadow-white/70 disabled:hover:shadow-black/10 disabled:hover:dark:shadow-white/20'
           } ${iconLeft ? 'pl-11' : ''} ${iconRight ? 'pr-11' : ''} ${
             cursorPointerInputs.includes(type) ? 'cursor-pointer' : ''
           }`}
@@ -168,7 +168,7 @@ export const Input: React.FC<InputProps> = ({
           } ${
             error
               ? 'border-red-300 dark:border-red-800 peer-focus:border-red-500'
-              : 'dark:border-gray-500 peer-focus:border-gray-500 peer-focus:dark:border-white'
+              : 'border-gray-300 dark:border-gray-500 peer-focus:border-gray-500 peer-focus:dark:border-white'
           }`}
         />
         <div className='absolute pointer-events-none inset-y-0 left-2 right-0 flex'>
@@ -190,7 +190,7 @@ export const Input: React.FC<InputProps> = ({
                   : 'border-red-300 dark:border-red-800'
                 : focused
                 ? 'border-gray-500 dark:border-white'
-                : 'dark:border-gray-500'
+                : 'border-gray-300 dark:border-gray-500'
             }`}
           />
         </div>

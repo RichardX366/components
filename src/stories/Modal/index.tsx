@@ -29,7 +29,7 @@ export const Modal: React.FC<ModalProps> = ({
         {children}
         {actions && <div className='modal-action'>{actions}</div>}
       </div>
-      <div className='modal-backdrop bg-gray-800/20 dark:bg-gray-500/20'>
+      <div className='modal-backdrop bg-gray-800/50 dark:bg-gray-500/50'>
         <button className='cursor-default' onClick={() => setOpen(false)}>
           close
         </button>
