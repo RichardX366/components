@@ -58,7 +58,7 @@ export const Notifications: React.FC<NotificationProps> = ({
         return (
           <div
             key={id}
-            className={`alert transition-all flex md:w-96 cursor-pointer ${notificationTypeToClass[type]} shadow-md shadow-black/50 dark:shadow-white/50`}
+            className={`alert transition-all flex md:w-96 cursor-pointer ${notificationTypeToClass[type]} shadow-md dark:shadow-white/20`}
             onClick={() =>
               notifications.find((n) => n.value.id === id)?.set(none)
             }

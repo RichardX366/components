@@ -16,7 +16,7 @@ export const Table: React.FC<TableProps> = ({
   activeRows,
 }: TableProps) => {
   return (
-    <div className='overflow-x-auto rounded-md shadow-md dark:shadow-white/50 ring-1 dark:ring-white/10 ring-black/10'>
+    <div className='overflow-x-auto rounded-md shadow-md dark:shadow-white/20 ring-1 dark:ring-white/10 ring-black/10'>
       <table className='table table-lg'>
         <thead className='bg-gray-100 dark:bg-gray-800 dark:text-white text-gray-900 text-xs'>
           <tr>

@@ -22,7 +22,8 @@ export interface InputProps {
     | 'text'
     | 'time'
     | 'url'
-    | 'week';
+    | 'week'
+    | 'file';
   min?: number | string;
   max?: number | string;
   step?: number;
@@ -80,6 +81,7 @@ export interface InputProps {
   iconRight?: React.ReactNode;
   iconLeftClickable?: boolean;
   iconRightClickable?: boolean;
+  multiple?: boolean;
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -101,6 +103,7 @@ export const Input: React.FC<InputProps> = ({
   iconRight,
   iconLeftClickable,
   iconRightClickable,
+  multiple,
 }: InputProps) => {
   const id = useId();
   const [focused, setFocused] = useState(false);
@@ -113,21 +116,21 @@ export const Input: React.FC<InputProps> = ({
   return (
     <div>
       <div
-        className={`relative shadow-md rounded-md min-w-[5rem] w-full ${
-          error
-            ? 'tooltip tooltip-error tooltip-bottom tooltip-open shadow-red-500/50'
-            : 'dark:shadow-white/50'
+        className={`relative rounded-md min-w-[5rem] w-full ${
+          error ? 'tooltip tooltip-error tooltip-bottom tooltip-open' : ''
         }`}
         data-tip={error}
       >
         <input
           value={value}
-          onChange={(e) => onChange(e.target.value)}
+          onChange={(e) =>
+            onChange(type === 'file' ? (e.target.files as any) : e.target.value)
+          }
           id={id}
-          className={`input py-2 dark:placeholder:text-gray-500 focus:outline-none rounded-md bg-transparent border-t-0 border-2 peer disabled:text-gray-400 disabled:dark:text-gray-500 dark:text-gray-200 w-full disabled:bg-transparent ${
+          className={`input shadow-md transition-shadow py-3 dark:placeholder:text-gray-500 focus:outline-none rounded-md bg-transparent border-t-0 border peer disabled:text-gray-400 disabled:dark:text-gray-500 dark:text-gray-200 w-full disabled:bg-transparent ${
             error
-              ? 'border-red-300 dark:border-red-800 focus:border-red-500'
-              : 'border-gray-200 dark:border-gray-500 disabled:border-gray-200 disabled:dark:border-gray-500 focus:border-gray-500 focus:dark:border-white'
+              ? 'border-red-300 dark:border-red-800 focus:border-red-500 shadow-red-500/50 hover:shadow-red-500'
+              : 'border-gray-200 dark:border-gray-500 disabled:border-gray-200 disabled:dark:border-gray-500 focus:border-gray-500 focus:dark:border-white shadow-black/10 dark:shadow-white/20 hover:shadow-black/40 hover:dark:shadow-white/70 disabled:hover:shadow-black/10 disabled:hover:dark:shadow-white/20'
           } ${iconLeft ? 'pl-11' : ''} ${iconRight ? 'pr-11' : ''}`}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
@@ -140,9 +143,10 @@ export const Input: React.FC<InputProps> = ({
           autoComplete={autoComplete}
           maxLength={maxLength}
           required={required}
+          multiple={multiple}
         />
         <div
-          className={`absolute inset-y-0 pointer-events-none left-0 rounded-l-md border-t-2  ${
+          className={`absolute inset-y-0 pointer-events-none left-0 rounded-l-md border-t  ${
             label ? 'w-2' : 'w-5'
           } ${
             error
@@ -153,16 +157,16 @@ export const Input: React.FC<InputProps> = ({
         <div className='absolute pointer-events-none inset-y-0 left-2 right-0 flex'>
           <label
             htmlFor={id}
-            className={`text-sm flex gap-1 relative -top-2.5 px-1 font-medium whitespace-nowrap ${
+            className={`text-sm flex gap-1 relative -top-2.5 px-1 whitespace-nowrap ${
               focused
                 ? 'text-black dark:text-white'
-                : 'text-gray-500 dark:text-gray-400'
+                : 'text-gray-500 dark:text-gray-300/80'
             }`}
           >
             {label} {required && <span className='text-red-600'>*</span>}
           </label>
           <div
-            className={`rounded-r-md border-t-2 h-full w-full ${
+            className={`rounded-r-md border-t h-full w-full ${
               error
                 ? focused
                   ? 'border-red-500'
