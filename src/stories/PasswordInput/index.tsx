@@ -15,7 +15,7 @@ export const PasswordInput: React.FC<PasswordInputProps> = (
   return (
     <Input
       {...props}
-      type={showPassword ? 'text' : 'password'}
+      type={(showPassword ? 'text' : 'password') as any}
       iconRight={
         <label className='swap'>
           <input

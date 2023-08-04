@@ -20,9 +20,15 @@ module.exports = {
 };
 ```
 
+Global style:
+
+```js
+import '@richardx/components/dist/styles.css';
+```
+
 If you don't:
 
 ```js
 // app.tsx
-import '@richardx/components/dist/styles.css';
+import '@richardx/components/dist/tailwind.css';
 ```

@@ -2,6 +2,16 @@ import React, { useId, useState } from 'react';
 import { AiOutlineLink, AiOutlineSearch, AiFillPhone } from 'react-icons/ai';
 import { GrMail } from 'react-icons/gr';
 
+const cursorPointerInputs = [
+  'color',
+  'date',
+  'datetime-local',
+  'month',
+  'time',
+  'week',
+  'file',
+];
+
 export interface InputProps {
   value: string;
   onChange(value: string): any;
@@ -15,15 +25,12 @@ export interface InputProps {
     | 'datetime-local'
     | 'email'
     | 'month'
-    | 'number'
-    | 'password'
     | 'search'
     | 'tel'
     | 'text'
     | 'time'
     | 'url'
-    | 'week'
-    | 'file';
+    | 'week';
   min?: number | string;
   max?: number | string;
   step?: number;
@@ -124,14 +131,20 @@ export const Input: React.FC<InputProps> = ({
         <input
           value={value}
           onChange={(e) =>
-            onChange(type === 'file' ? (e.target.files as any) : e.target.value)
+            onChange(
+              type === ('file' as any)
+                ? (e.target.files as any)
+                : e.target.value,
+            )
           }
           id={id}
           className={`input shadow-md transition-shadow py-3 dark:placeholder:text-gray-500 focus:outline-none rounded-md bg-transparent border-t-0 border peer disabled:text-gray-400 disabled:dark:text-gray-500 dark:text-gray-200 w-full disabled:bg-transparent ${
             error
               ? 'border-red-300 dark:border-red-800 focus:border-red-500 shadow-red-500/50 hover:shadow-red-500'
               : 'border-gray-200 dark:border-gray-500 disabled:border-gray-200 disabled:dark:border-gray-500 focus:border-gray-500 focus:dark:border-white shadow-black/10 dark:shadow-white/20 hover:shadow-black/40 hover:dark:shadow-white/70 disabled:hover:shadow-black/10 disabled:hover:dark:shadow-white/20'
-          } ${iconLeft ? 'pl-11' : ''} ${iconRight ? 'pr-11' : ''}`}
+          } ${iconLeft ? 'pl-11' : ''} ${iconRight ? 'pr-11' : ''} ${
+            cursorPointerInputs.includes(type) ? 'cursor-pointer' : ''
+          }`}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           placeholder={placeholder}

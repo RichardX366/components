@@ -56,7 +56,7 @@ export const NumberInput: React.FC<NumberInputProps> = (
       {...props}
       value={stringValue}
       onChange={handleNewValue}
-      type='number'
+      type={'number' as any}
       iconLeft={iconLeft}
     />
   );
