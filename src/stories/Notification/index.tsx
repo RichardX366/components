@@ -43,13 +43,21 @@ export const Notifications: React.FC<NotificationProps> = ({
   notifications.forEach((notification) => {
     const { duration, startedTimeout, id } = notification.value;
     if (!startedTimeout) {
-      setTimeout(
-        () => notifications.find((n) => n.value.id === id)?.set(none),
-        duration,
-      );
+      setTimeout(() => close(id), duration);
       notification.startedTimeout.set(true);
     }
   });
+
+  const close = (id: string) => {
+    const div = document.getElementById(id);
+    if (!div || div.style.animation) return;
+    div.style.height = `${div.offsetHeight}px`;
+    div.style.animation = 'close .3s linear forwards';
+    setTimeout(
+      () => notifications.find((n) => n.value.id === id)?.set(none),
+      300,
+    );
+  };
 
   return (
     <div className={`toast toast-top toast-end whitespace-normal ${className}`}>
@@ -58,10 +66,9 @@ export const Notifications: React.FC<NotificationProps> = ({
         return (
           <div
             key={id}
-            className={`alert transition-all flex md:w-96 cursor-pointer ${notificationTypeToClass[type]} shadow-md dark:shadow-white/20`}
-            onClick={() =>
-              notifications.find((n) => n.value.id === id)?.set(none)
-            }
+            id={id}
+            className={`alert overflow-hidden select-none flex md:w-96 cursor-pointer ${notificationTypeToClass[type]} shadow-md dark:shadow-white/20`}
+            onClick={() => close(id)}
           >
             <div className='w-5 h-5'>
               <Icon className='w-5 h-5' />
