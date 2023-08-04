@@ -142,7 +142,7 @@ export const Input: React.FC<InputProps> = ({
           required={required}
         />
         <div
-          className={`absolute -z-10 inset-y-0 left-0 rounded-l-md border-t-2  ${
+          className={`absolute inset-y-0 pointer-events-none left-0 rounded-l-md border-t-2  ${
             label ? 'w-2' : 'w-5'
           } ${
             error
@@ -150,10 +150,10 @@ export const Input: React.FC<InputProps> = ({
               : 'dark:border-gray-500 peer-focus:border-gray-500 peer-focus:dark:border-white'
           }`}
         />
-        <div className='absolute -z-10 inset-y-0 left-2 right-0 flex'>
+        <div className='absolute pointer-events-none inset-y-0 left-2 right-0 flex'>
           <label
             htmlFor={id}
-            className={`text-sm flex gap-1 relative -top-2.5 px-1 font-medium ${
+            className={`text-sm flex gap-1 relative -top-2.5 px-1 font-medium whitespace-nowrap ${
               focused
                 ? 'text-black dark:text-white'
                 : 'text-gray-500 dark:text-gray-400'
