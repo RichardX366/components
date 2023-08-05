@@ -28,15 +28,15 @@ export interface MediaInputMultipleProps
   multiple: true;
 }
 
-const compressImage = (
+export const compressImage = (
   file: Blob,
   options?: Compressor.Options,
 ): Promise<Blob> =>
   new Promise(
     async (res, rej) =>
       new (await import('compressorjs')).default(file, {
-        ...options,
         quality: 0.3,
+        ...options,
         strict: false,
         resize: 'cover',
         success: res as (file: Blob) => void,
@@ -44,7 +44,7 @@ const compressImage = (
       }),
   );
 
-const compressGif = async (
+export const compressGif = async (
   file: Blob,
   size?: { width: number; height: number },
 ): Promise<Blob> => {
@@ -68,13 +68,12 @@ const compressGif = async (
   return result[0];
 };
 
-const compressHeic = async (file: Blob): Promise<Blob> => {
+export const convertHeic = async (file: Blob): Promise<Blob> => {
   const result = await (
     await import('heic2any')
   ).default({
     blob: file,
     toType: 'image/jpeg',
-    quality: 0.5,
   });
   return result as Blob;
 };
@@ -128,7 +127,7 @@ export function MediaInput(
           );
         } else if (file.type.includes('image/heic')) {
           newFile = await compressImage(
-            await compressHeic(file),
+            await convertHeic(file),
             dimensions === 'round'
               ? {
                   width: 512,
