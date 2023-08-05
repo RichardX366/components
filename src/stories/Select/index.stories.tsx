@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 
-import { Select, SelectItem, SelectProps } from '.';
+import { Select, SelectProps } from '.';
 import { useState } from 'react';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -22,7 +22,7 @@ const data = new Array(10).fill(0).map((_, i) => ({
 }));
 
 export const Default: StoryFn<SelectProps> = (args) => {
-  const [value, setValue] = useState<SelectItem | null>(null);
+  const [value, setValue] = useState<string | null>(null);
 
   return (
     <Select
@@ -30,13 +30,13 @@ export const Default: StoryFn<SelectProps> = (args) => {
       {...args}
       data={data}
       value={value}
-      onChange={setValue}
+      onChange={({ value }) => setValue(value)}
     />
   );
 };
 
 export const WithDetails: StoryFn<SelectProps> = (args) => {
-  const [value, setValue] = useState<SelectItem | null>(null);
+  const [value, setValue] = useState<string | null>(null);
 
   return (
     <Select
@@ -47,13 +47,13 @@ export const WithDetails: StoryFn<SelectProps> = (args) => {
       {...args}
       data={data}
       value={value}
-      onChange={setValue}
+      onChange={({ value }) => setValue(value)}
     />
   );
 };
 
 export const WithError: StoryFn<SelectProps> = (args) => {
-  const [value, setValue] = useState<SelectItem | null>(null);
+  const [value, setValue] = useState<string | null>(null);
 
   return (
     <Select
@@ -65,18 +65,21 @@ export const WithError: StoryFn<SelectProps> = (args) => {
       {...args}
       data={data}
       value={value}
-      onChange={setValue}
+      onChange={({ value }) => setValue(value)}
     />
   );
 };
 
 export const Disabled: StoryFn<SelectProps> = (args) => {
-  const [value, setValue] = useState<SelectItem>({
-    label: 'Option 1',
-    value: '1',
-  });
+  const [value, setValue] = useState<string>('1');
 
   return (
-    <Select disabled {...args} data={data} value={value} onChange={setValue} />
+    <Select
+      disabled
+      {...args}
+      data={data}
+      value={value}
+      onChange={({ value }) => setValue(value)}
+    />
   );
 };

@@ -6,7 +6,7 @@ export interface SelectItem {
 }
 
 export interface SelectProps {
-  value: SelectItem | null;
+  value: string | null;
   onChange(value: SelectItem, event: React.ChangeEvent<HTMLSelectElement>): any;
   label?: string;
   placeholder?: string;
@@ -40,7 +40,7 @@ export const Select: React.FC<SelectProps> = ({
         data-tip={error}
       >
         <select
-          value={value?.value || ''}
+          value={value || (value === null ? 'null' : '')}
           onChange={(e) =>
             onChange(data.find((d) => d.value === e.target.value)!, e)
           }
@@ -50,14 +50,16 @@ export const Select: React.FC<SelectProps> = ({
               ? 'border-red-300 dark:border-red-800 focus:border-red-500 shadow-red-500/50 hover:shadow-red-500'
               : 'border-gray-300 dark:border-gray-500 disabled:border-gray-300 disabled:dark:border-gray-500 focus:border-gray-500 focus:dark:border-white shadow-black/10 dark:shadow-white/20 hover:shadow-black/40 hover:dark:shadow-white/70 disabled:hover:shadow-black/10 disabled:hover:dark:shadow-white/20'
           } ${
-            value ? 'dark:text-gray-200' : 'text-gray-400 dark:text-gray-500'
+            value === null
+              ? 'text-gray-400 dark:text-gray-500'
+              : 'dark:text-gray-200'
           }`}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           disabled={disabled}
         >
           {placeholder && (
-            <option value='' disabled>
+            <option value='null' disabled>
               {placeholder}
             </option>
           )}
