@@ -50,7 +50,9 @@ export const Range: React.FC<RangeProps> = ({
         disabled={disabled}
         value={value}
         onChange={(e) => onChange(+e.target.value, e)}
-        className={`range ${error ? 'range-error' : ''}`}
+        className={`range disabled:cursor-not-allowed ${
+          error ? 'range-error' : ''
+        }`}
       />
     </div>
   );

@@ -7,4 +7,5 @@ export * from './Notification';
 export * from './NumberInput';
 export * from './PasswordInput';
 export * from './Range';
+export * from './Select';
 export * from './Table';
