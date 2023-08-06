@@ -42,7 +42,14 @@ export const TitleAndActions: StoryFn<ModalProps> = (args) => {
       <Modal
         title='Title'
         actions={
-          <button className='btn btn-outline btn-info normal-case'>Hi</button>
+          <>
+            <button className='btn btn-outline btn-info normal-case flex-1 md:flex-none'>
+              Hi
+            </button>
+            <button className='btn btn-outline btn-info normal-case flex-1 md:flex-none'>
+              Hi 2
+            </button>
+          </>
         }
         {...args}
         open={open}

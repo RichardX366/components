@@ -25,7 +25,11 @@ export const Modal: React.FC<ModalProps> = ({
   return stayMounted || open || debouncedOpen ? (
     <dialog className='modal' open={instantOpen}>
       <div className='modal-box md:min-w-[32rem] md:max-w-[92%] md:w-auto'>
-        {title && <h3 className='font-bold text-2xl mb-6'>{title}</h3>}
+        {title && (
+          <h3 className='font-bold text-2xl mb-6 text-center md:text-left'>
+            {title}
+          </h3>
+        )}
         {children}
         {actions && <div className='modal-action'>{actions}</div>}
       </div>
