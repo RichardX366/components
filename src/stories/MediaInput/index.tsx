@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   FileInput,
   FileInputMultipleProps,
@@ -95,15 +95,11 @@ export function MediaInput(
     ? ['image/*', 'image/heic', 'video/*']
     : ['image/*', 'image/heic'];
 
-  const [urls, setUrls] = useState<string[]>([]);
-
   const handleNewValue = async (
     files: File[] | File | null,
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     if (!files || (Array.isArray(files) && !files.length)) {
-      urls.forEach(URL.revokeObjectURL);
-      setUrls([]);
       if (multiple) return onChange([] as any, event);
       return onChange(null as any, event);
     }
@@ -163,12 +159,10 @@ export function MediaInput(
     );
     if (newFiles.findIndex((file) => !file) !== -1) return;
 
-    urls.forEach((url) => URL.revokeObjectURL(url));
     const newValue: MediaFile[] = newFiles.map((file) => ({
       blob: file as Blob,
       url: URL.createObjectURL(file as Blob),
     }));
-    setUrls(newValue.map(({ url }) => url));
 
     if (multiple) return onChange(newValue as any, event);
     return onChange(newValue[0] as any, event);
