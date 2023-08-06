@@ -152,7 +152,8 @@ export const dateInput = (date: Date | string) => {
       year: 'numeric',
       month: '2-digit',
       day: '2-digit',
-      timeZone: newDate.getTime() % MILLISECONDS_IN_A_DAY === 0 ? 'UTC' : '',
+      timeZone:
+        newDate.getTime() % MILLISECONDS_IN_A_DAY === 0 ? 'UTC' : undefined,
     })
     .split('/');
   return `${local[2]}-${local[0]}-${local[1]}`;
@@ -164,7 +165,8 @@ export const wordDate = (date: Date | string) => {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
-    timeZone: newDate.getTime() % MILLISECONDS_IN_A_DAY === 0 ? 'UTC' : '',
+    timeZone:
+      newDate.getTime() % MILLISECONDS_IN_A_DAY === 0 ? 'UTC' : undefined,
   });
 };
 
@@ -174,7 +176,8 @@ export const numberDate = (date: Date | string) => {
     year: 'numeric',
     month: '2-digit',
     day: '2-digit',
-    timeZone: newDate.getTime() % MILLISECONDS_IN_A_DAY === 0 ? 'UTC' : '',
+    timeZone:
+      newDate.getTime() % MILLISECONDS_IN_A_DAY === 0 ? 'UTC' : undefined,
   });
 };
 
