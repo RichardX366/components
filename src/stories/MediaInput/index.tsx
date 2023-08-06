@@ -15,14 +15,17 @@ export interface MediaFile {
 
 export interface MediaInputSingleProps
   extends Omit<FileInputSingleProps, 'onChange' | 'accept'> {
-  onChange(value: MediaFile | null): any;
+  onChange(
+    value: MediaFile | null,
+    event: React.ChangeEvent<HTMLInputElement>,
+  ): any;
   allowVideo?: boolean;
   dimensions?: 'round' | { width: number; height: number };
   multiple?: false;
 }
 export interface MediaInputMultipleProps
   extends Omit<FileInputMultipleProps, 'onChange' | 'accept'> {
-  onChange(value: MediaFile[]): any;
+  onChange(value: MediaFile[], event: React.ChangeEvent<HTMLInputElement>): any;
   allowVideo?: boolean;
   dimensions?: 'round' | { width: number; height: number };
   multiple: true;
@@ -101,8 +104,8 @@ export function MediaInput(
     if (!files || (Array.isArray(files) && !files.length)) {
       urls.forEach(URL.revokeObjectURL);
       setUrls([]);
-      if (multiple) return onChange([] as any);
-      return onChange(null as any);
+      if (multiple) return onChange([] as any, event);
+      return onChange(null as any, event);
     }
 
     if (files instanceof File) files = [files];
@@ -167,8 +170,8 @@ export function MediaInput(
     }));
     setUrls(newValue.map(({ url }) => url));
 
-    if (multiple) return onChange(newValue as any);
-    return onChange(newValue[0] as any);
+    if (multiple) return onChange(newValue as any, event);
+    return onChange(newValue[0] as any, event);
   };
 
   return (
