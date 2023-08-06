@@ -125,6 +125,24 @@ export const formatFileSize = (bytes: number) => {
   return Math.max(bytes, 0.1).toFixed(1) + byteUnits[i];
 };
 
+export const dateTimeInput = (date: Date | string) => {
+  const newDate = new Date(date);
+  const local = newDate
+    .toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    })
+    .split('/');
+  const time = newDate
+    .toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+    })
+    .split(':');
+  return `${local[2]}-${local[0]}-${local[1]}T${time[0]}:${time[1]}`;
+};
+
 export const dateInput = (date: Date | string) => {
   const newDate = new Date(date);
   const local = newDate

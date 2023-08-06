@@ -31,8 +31,8 @@ export interface InputProps {
     | 'time'
     | 'url'
     | 'week';
-  min?: number | string;
-  max?: number | string;
+  min?: string;
+  max?: string;
   step?: number;
   disabled?: boolean;
   autoComplete?:
@@ -117,6 +117,39 @@ export const Input: React.FC<InputProps> = ({
   const id = useId();
   const [focused, setFocused] = useState(false);
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (type === ('file' as any)) {
+      onChange(e.target.files as any, e);
+    } else if (type.includes('date')) {
+      if (min && new Date(e.target.value) < new Date(min)) return;
+      if (max && new Date(e.target.value) > new Date(max)) return;
+      onChange(e.target.value, e);
+    } else if (type === 'time') {
+      const timeNumber = +e.target.value.replace(':', '');
+
+      if (min && timeNumber < +min.replace(':', '')) return;
+      if (max && timeNumber > +max.replace(':', '')) return;
+
+      onChange(e.target.value, e);
+    } else if (type === 'week') {
+      const weekNumber = +e.target.value.replace('-W', '');
+
+      if (min && weekNumber < +min.replace('-W', '')) return;
+      if (max && weekNumber > +max.replace('-W', '')) return;
+
+      onChange(e.target.value, e);
+    } else if (type === 'month') {
+      const monthNumber = +e.target.value.replace('-', '');
+
+      if (min && monthNumber < +min.replace('-', '')) return;
+      if (max && monthNumber > +max.replace('-', '')) return;
+
+      onChange(e.target.value, e);
+    } else {
+      onChange(e.target.value, e);
+    }
+  };
+
   if (type === 'email' && !iconRight) iconRight = <GrMail />;
   if (type === 'search' && !iconRight) iconRight = <AiOutlineSearch />;
   if (type === 'tel' && !iconRight) iconRight = <AiFillPhone />;
@@ -132,14 +165,7 @@ export const Input: React.FC<InputProps> = ({
       >
         <input
           value={value}
-          onChange={(e) =>
-            onChange(
-              type === ('file' as any)
-                ? (e.target.files as any)
-                : e.target.value,
-              e,
-            )
-          }
+          onChange={handleChange}
           id={id}
           className={`input shadow-md transition-shadow py-3 dark:placeholder:text-gray-500 focus:outline-none rounded-md border-t-0 border peer disabled:text-gray-400 disabled:dark:text-gray-500 dark:text-gray-200 w-full min-w-[calc(100%-1rem)] ${
             error

@@ -57,6 +57,8 @@ export const NumberInput: React.FC<NumberInputProps> = (props) => {
       onChange={handleNewValue}
       type={'number' as any}
       iconLeft={iconLeft}
+      min={props.min as any}
+      max={props.max as any}
     />
   );
 };
