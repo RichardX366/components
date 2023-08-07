@@ -156,7 +156,7 @@ export const Input: React.FC<InputProps> = ({
   if (type === 'url' && !iconRight) iconRight = <AiOutlineLink />;
 
   return (
-    <div>
+    <div className='w-full'>
       <div
         className={`relative rounded-md min-w-[5rem] w-full ${
           error ? 'tooltip tooltip-error tooltip-bottom tooltip-open' : ''
