@@ -15,6 +15,7 @@ const cursorPointerInputs = [
 export interface InputProps {
   value: string;
   onChange(value: string, event: React.ChangeEvent<HTMLInputElement>): any;
+  onEnter?(event: React.KeyboardEvent<HTMLInputElement>): any;
   label?: string;
   placeholder?: string;
   description?: string;
@@ -95,6 +96,7 @@ export interface InputProps {
 export const Input: React.FC<InputProps> = ({
   value,
   onChange,
+  onEnter,
   label,
   placeholder,
   description,
@@ -176,6 +178,7 @@ export const Input: React.FC<InputProps> = ({
           }`}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
+          onKeyDown={(e) => e.key === 'Enter' && onEnter && onEnter(e)}
           placeholder={placeholder}
           type={type}
           min={min}
