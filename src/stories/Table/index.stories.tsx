@@ -42,3 +42,7 @@ export const ActiveRows: StoryFn<TableProps> = (args) => {
     />
   );
 };
+
+export const NoData: StoryFn<TableProps> = (args) => {
+  return <Table {...args} data={[]} columns={sampleColumns} />;
+};
