@@ -12,7 +12,17 @@ export interface TableProps {
   noData?: React.ReactNode;
 }
 
-export const Table: React.FC<TableProps> = ({ columns, data, activeRows }) => {
+export const Table: React.FC<TableProps> = ({
+  columns,
+  data,
+  activeRows,
+  noData = (
+    <>
+      <AiOutlineFileSearch className='w-20 h-20' />
+      <p>No data found</p>
+    </>
+  ),
+}) => {
   return (
     <div className='overflow-x-auto rounded-md shadow-md dark:shadow-white/20 ring-1 dark:ring-white/10 ring-black/10'>
       <table className='table table-lg'>
@@ -47,9 +57,8 @@ export const Table: React.FC<TableProps> = ({ columns, data, activeRows }) => {
             ))
           ) : (
             <tr className='h-56 relative'>
-              <th className='absolute inset-0 flex flex-col items-center justify-center dark:bg-gray-900'>
-                <AiOutlineFileSearch className='w-20 h-20 mb-2' />
-                <p>No data found</p>
+              <th className='absolute inset-0 flex flex-col items-center justify-center gap-2 bg-white dark:bg-gray-900'>
+                {noData}
               </th>
             </tr>
           )}
