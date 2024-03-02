@@ -9,7 +9,8 @@
     "name": "Richard Xiong"
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "dependencies": {
     "@hookstate/core": "3",
